@@ -1,7 +1,7 @@
 GraphTemplate
 ===============
 
-Introduction goes here.
+Gunplot and Graphviz template for rails.
 
 Install
 =======
@@ -22,4 +22,4 @@ Example
 Example goes here.
 
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+Copyright (c) 2010 [zzdhidden@gmail.com], released under the MIT license
