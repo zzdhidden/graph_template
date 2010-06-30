@@ -21,6 +21,8 @@ module GraphTemplate
       #@view.controller.headers['Content-Disposition'] = 'inline'
       format = tpl.scan(/\/\*!format=(.+?)\*\//i)
       format = (format.size > 0 ? format.last[0] : (@view.params[:format] || :png)).to_sym
+      #for test
+      return tpl if format == :rdot 
       layout = tpl.scan(/\/\*!layout=(.+?)\*\//i)
       layout = (layout.size > 0 ? layout.last[0] : :dot).to_sym
       raise(ArgumentError, "Format must in #{FORMATS.inspect}") unless FORMATS.include?(format)
