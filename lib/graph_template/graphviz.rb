@@ -2,7 +2,7 @@
 module GraphTemplate
 
   class Graphviz < ::ActionView::TemplateHandler
-    LAYOUTS = [:dot, :neato, :twopi, :circo, :fdp]
+    LAYOUTS = [:dot, :neato, :twopi, :circo, :fdp, :sfdp]
     FORMATS = [:png, :cmapx, :svg, :gif, :vml, :pdf, :plain, :ps]
 
     def self.call(template)
