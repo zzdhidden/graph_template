@@ -23,11 +23,9 @@ module GraphTemplate
       format = (format.size > 0 ? format.last[0] : (@view.params[:format] || :png)).to_sym
       #for test
       return tpl if format == :rdot 
-      layout = tpl.scan(/\/\*!layout=(.+?)\*\//i)
-      layout = (layout.size > 0 ? layout.last[0] : :dot).to_sym
       raise(ArgumentError, "Format must in #{FORMATS.inspect}") unless FORMATS.include?(format)
-      raise(ArgumentError, "Layout must in #{LAYOUTS.inspect}") unless LAYOUTS.include?(layout)
-      gp = IO::popen("dot -q -T#{format} -K#{layout}", "w+")
+      #Layout can be set by graph attr.
+      gp = IO::popen("dot -q -T#{format}", "w+")
       gp << tpl
       gp.flush
       gp.close_write
