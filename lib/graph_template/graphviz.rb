@@ -22,7 +22,9 @@ module GraphTemplate
       #for test
       return tpl if format == :rdot 
       raise(ArgumentError, "Format must in #{FORMATS.inspect}") unless FORMATS.include?(format)
-      gp = IO::popen("dot -q -T#{format}", "w+")
+      layout = tpl.scan(/graph\s*\[.*?layout\s*=\s*["']?(dot|neato|twopi|circo|fdp|sfdp)["']?/i)
+      layout = (layout.size > 0 ? layout.last[0] : :dot).to_sym
+      gp = IO::popen("dot -q -T#{format} -K#{layout}", "w+")
       gp << tpl
       gp.flush
       gp.close_write
