@@ -6,6 +6,10 @@ Gunplot and Graphviz template for rails.
 Install
 =======
 
+In rails 2.
+
+	git checkout v0.1 
+
 ###Set environmental variable GDFONTPATH
 
 > If your font path is /Users/hidden/project/gnuplot_template/vendor/plugins/gnuplot_template/fonts
