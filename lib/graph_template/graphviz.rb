@@ -2,20 +2,20 @@
 module GraphTemplate
 
   class Graphviz < ::ActionView::TemplateHandler
+
     LAYOUTS = [:dot, :neato, :twopi, :circo, :fdp, :sfdp]
     FORMATS = [:png, :cmapx, :svg, :gif, :vml, :pdf, :plain, :ps]
 
     def self.call(template)
-      "#{name}.new(self).render(template, local_assigns)"
+      "#{name}.new(self).render(%q{#{template.source}}, local_assigns)"
     end
 
     def initialize(view = nil)
       @view = view
     end
 
-    def render(template, local_assigns)
-      source = template.source
-      tpl = @view.render(:inline => source, :locals => local_assigns, :layout => false, :type => :erb)
+    def render(source, local_assigns)
+      tpl = @view.controller.render(:inline => source, :locals => local_assigns, :layout => false, :type => :erb)
       #@view.controller.response.content_type ||= Mime::PNG
       #@view.controller.headers['Content-Disposition'] = 'inline'
       format = (local_assigns[:format] || @view.params[:format] || :png).to_sym
